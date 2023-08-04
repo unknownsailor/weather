@@ -1,3 +1,14 @@
 {
-  "extends": "@tsconfig/react-native/tsconfig.json"
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "experimentalDecorators": true,
+    "typeRoots": ["node_modules/@types", "src/types"],
+    "noImplicitAny": false
+  },
+  "include": ["src", "images.d.ts", ".d.ts"],
+  "paths": {
+    "@env": ["node_modules/react-native-dotenv"] // this mapping is relative to "baseUrl"
+  },
+  "typeRoots": ["./src/types", "node_modules/@types"]
 }
