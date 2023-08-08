@@ -1,17 +1,16 @@
-import { observer } from "mobx-react";
-import { WeatherService } from "../services/WeatherService";
-import { useEffect } from "react";
+import React, { useMemo } from 'react'
+import { WeatherService } from '../services/WeatherService'
+import { Text } from 'react-native'
+import { Screen } from '../components/Weather/Screen'
 
-interface IWeatherProps {
-  weather: WeatherService
+interface IWeatherProps {}
+
+export const WeatherScreen = (props: IWeatherProps) => {
+  const weather = useMemo(() => new WeatherService(), [])
+
+  if (!weather) {
+    return <Text>Loading</Text>
+  }
+
+  return <Screen weather={weather} />
 }
-
-export const WeatherScreen = observer((props: IWeatherProps) => {
-  console.log(props.weather);
-  
-  useEffect(() => {
-    props.weather.fetch()
-  }, [])
-  
-  return <></>
-})

@@ -11,8 +11,9 @@
     "lint-fix": "eslint ./src/**/*.tsx --fix",
     "rules": "yarn tsc",
     "format": "prettier --write ./src",
-    "pod": "bash -c \"export USE_FRAMEWORKS=static; export USE_HERMES=0; yarn install; cd ios; pod install --clean-install; cd ..\"",
-    "pod-release": "bash -c \"export USE_FRAMEWORKS=static; yarn install; cd ios; pod install --clean-install; cd ..\""
+    "pod": "bash -c \"export USE_FRAMEWORKS=static; export USE_HERMES=0; yarn install; cd ios; npx react-native setup-ios-permissions; pod install --clean-install; cd ..\"",
+    "pod-release": "bash -c \"export USE_FRAMEWORKS=static; yarn install; cd ios; npx react-native setup-ios-permissions; pod install --clean-install; cd ..\"",
+    "repod": "yarn pod:clear; yarn install; yarn pod"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
@@ -24,6 +25,11 @@
       "pre-commit": "lint-staged"
     }
   },
+  "reactNativePermissionsIOS": [
+    "LocationAccuracy",
+    "LocationAlways",
+    "LocationWhenInUse"
+  ],
   "dependencies": {
     "@babel/plugin-proposal-decorators": "^7.22.7",
     "axios": "^1.4.0",
@@ -35,7 +41,9 @@
     "mobx": "^6.10.0",
     "mobx-react": "^9.0.0",
     "react": "18.2.0",
-    "react-native": "0.72.3"
+    "react-native": "0.72.3",
+    "react-native-geolocation-service": "^5.3.1",
+    "react-native-permissions": "^3.8.4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

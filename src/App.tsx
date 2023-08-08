@@ -22,7 +22,7 @@ function App(): JSX.Element {
   return (
     <ErrorBoundary>
       <View style={{ flex: 1 }}>
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#fff'}}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
           <StatusBar
             barStyle={isDarkMode ? 'light-content' : 'dark-content'}
             backgroundColor={backgroundStyle.backgroundColor}

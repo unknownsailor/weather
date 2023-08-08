@@ -1,7 +1,6 @@
-import axios from "axios"
+import axios from 'axios'
 import { API_URL, API_ID } from '@env'
-import { toJS } from "mobx"
-
+import { toJS } from 'mobx'
 
 export const api = axios.create({
   baseURL: API_URL,
