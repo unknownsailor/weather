@@ -14,5 +14,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     textTransform: 'uppercase',
     textAlign: 'center',
+    marginVertical: 16,
   }
 })

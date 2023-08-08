@@ -9,7 +9,7 @@ interface ITempProps {
 export const Temp = (props: ITempProps) => {
 
 
-  return <Text style={[styles.text, props.styles]}>{props.temp}&#176;</Text>
+  return <Text style={[styles.text, props.styles]}>{`${props.temp} \u00B0`}</Text>
 }
 
 const styles = StyleSheet.create({

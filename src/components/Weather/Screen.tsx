@@ -1,33 +1,41 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { observer } from 'mobx-react'
 import { useEffect } from 'react'
 import { WeatherService } from '../../services/WeatherService'
-import { RefreshControl, ScrollView, StyleSheet, Text } from 'react-native'
+import { Pressable, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { CityName } from './CityName'
 import { WeatherIcon } from './WeatherIcon'
 import { Temp } from './Temp'
 import { DailyForecast } from './DailyForecast'
-import { getTemp } from '../../utils'
+import { deviceLocale, getIcon, getTemp } from '../../utils'
+import { IUnitsContext, UnitsContext } from '../../providers/UnitsProvider'
+import { Units } from '../../enums/Units'
+import { UnitsSwitcher } from './UnitsSwitcher'
 
 interface IScreenProps {
   weather: WeatherService
 }
 
 export const Screen = observer((props: IScreenProps) => {
+  const unitsContext = useContext(UnitsContext) as IUnitsContext
 
   useEffect(() => {
-    props.weather.getLocation()
-  }, [])
+    const lang = deviceLocale().split('-')[0]
+    props.weather.getLocation(unitsContext.units, lang)
+  }, [unitsContext.units])
 
   if(props.weather.loading.current) {
     return <Text>Loading</Text>
   }
 
   return (
-    <ScrollView style={styles.container} refreshControl={<RefreshControl refreshing={false} onRefresh={props.weather.currentForecast} />}>
+    <ScrollView contentContainerStyle={styles.container}>
+      <UnitsSwitcher units={unitsContext.units} onUnits={unitsContext.changeUnits} />
       <CityName name={props.weather.current.name} />
-      <WeatherIcon icon={`https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/widgets/${props.weather.current.weather[0].icon}.png`} />
-      <Temp temp={getTemp(props.weather.current.main.temp)} />
+      <View style={styles.block}>
+        <WeatherIcon icon={getIcon(props.weather.current.weather[0].icon)} />
+        <Temp temp={getTemp(props.weather.current.main.temp)} />
+      </View>
       <DailyForecast daily={props.weather.daily} />
     </ScrollView>
   )
@@ -35,6 +43,12 @@ export const Screen = observer((props: IScreenProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
+    position: 'relative',
+    flexGrow: 1,
   },
+  block: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
 })

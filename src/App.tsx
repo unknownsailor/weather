@@ -11,6 +11,7 @@ import { SafeAreaView, StatusBar, View, useColorScheme } from 'react-native'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 import ErrorBoundary from './ErrorBoundary'
 import { Screen } from './screens/Screen'
+import { UnitsProvider } from './providers/UnitsProvider'
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark'
@@ -21,15 +22,17 @@ function App(): JSX.Element {
 
   return (
     <ErrorBoundary>
-      <View style={{ flex: 1 }}>
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
-          <StatusBar
-            barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-            backgroundColor={backgroundStyle.backgroundColor}
-          />
-          <Screen />
-        </SafeAreaView>
-      </View>
+      <UnitsProvider>
+        <View style={{ flex: 1 }}>
+          <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+            <StatusBar
+              barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+              backgroundColor={backgroundStyle.backgroundColor}
+            />
+            <Screen />
+          </SafeAreaView>
+        </View>
+      </UnitsProvider>
     </ErrorBoundary>
   )
 }

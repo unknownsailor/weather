@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { IDaily } from '../../interfaces/IDaily'
 import { FlatList, StyleSheet, View } from 'react-native'
 import { WeatherIcon } from './WeatherIcon'
-import { getDate, getTemp } from '../../utils'
+import { getDate, getIcon, getTemp } from '../../utils'
 import { Temp } from './Temp'
 import { Date } from './Date'
 
@@ -16,12 +16,12 @@ export const DailyForecast = (props: IDailyForecastProp) => {
   const keyExtractor = useCallback((item: IDaily) => item.dt.toString(), [])
 
   const renderItem = ({ item } : { item: IDaily }) => {
-    console.log({ item });
+    console.log({ item }, item.weather[0].icon);
     
     return (
-      <View>
+      <View style={styles.plate}>
         <Date date={getDate(item.dt)} />
-        <WeatherIcon icon={`https://openweathermap.org/themes/openweathermap/assets/vendor/owm/img/widgets/${item.weather[0].icon}.png`} styles={{ width: 80, height: 80 }} />
+        <WeatherIcon icon={getIcon(item.weather[0].icon)} styles={{ width: 80, height: 80 }} />
         <Temp temp={getTemp(item.temp.day)} styles={styles.temp} />
         <Temp temp={getTemp(item.temp.night)} styles={styles.temp} />
       </View>
@@ -50,4 +50,8 @@ const styles = StyleSheet.create({
     lineHeight: 22, 
     fontWeight: '400'
   },
+  plate: {
+    width: 90,
+    marginRight: 16,
+  }
 })

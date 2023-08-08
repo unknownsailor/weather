@@ -1,14 +1,17 @@
 import React from 'react'
-import { Image, StyleSheet } from 'react-native'
+import { Image, StyleSheet, View } from 'react-native'
+import { Icon, IconName } from '../../shared/Icon'
 
 interface IWeatherIconProps {
-  icon: string
+  icon: IconName
   styles?: object
 }
 
 export const WeatherIcon = (props: IWeatherIconProps) => {
-
-  return <Image style={[styles.icon, props.styles]} source={{ uri: props.icon }} />
+  console.log(props.icon);
+  
+  return <View style={[styles.icon, props.styles]}><Icon name={props.icon} /></View>
+  // return <Image style={[styles.icon, props.styles]} source={{ uri: props.icon }} />
 }
 
 const styles = StyleSheet.create({

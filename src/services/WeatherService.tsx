@@ -5,6 +5,7 @@ import { makeObservable, observable } from 'mobx'
 import Geolocation from 'react-native-geolocation-service'
 import { ICurrent } from '../interfaces/ICurrent'
 import { IDaily } from '../interfaces/IDaily'
+import { Units } from '../enums/Units'
 
 export class WeatherService {
   private readonly request: AxiosInstance
@@ -26,7 +27,7 @@ export class WeatherService {
     this.request = api
   }
 
-  getLocation = async () => {
+  getLocation = async (value: Units, lang: string) => {    
     this.loading.location = true
     await Geolocation.getCurrentPosition(
       async position => {
@@ -36,8 +37,8 @@ export class WeatherService {
         this.latitude = latitude
         this.longitude = longitude
         this.loading.location = false
-        this.currentForecast()
-        this.dailyForecast()
+        this.currentForecast(value, lang)
+        this.dailyForecast(value, lang)
       },
       error => {
         console.log(error.code, error.message)
@@ -46,11 +47,11 @@ export class WeatherService {
     )
   }
 
-  currentForecast = async (latitude = this.latitude, longitude = this.longitude) => {
+  currentForecast = async (units: Units, lang: string, latitude = this.latitude, longitude = this.longitude) => {
     console.log(latitude, longitude)
 
     try {
-      const { data } = await this.request.get(`weather?lat=${latitude}&lon=${longitude}&appid=${API_ID}&units=metric`)
+      const { data } = await this.request.get(`weather?lat=${latitude}&lon=${longitude}&appid=${API_ID}&units=${units}&lang=${lang}`)
       this.current = data
     } catch (exception) {
     } finally {
@@ -58,9 +59,9 @@ export class WeatherService {
     }
   }
 
-  dailyForecast = async (latitude = this.latitude, longitude = this.longitude) => {
+  dailyForecast = async (units: Units, lang: string, latitude = this.latitude, longitude = this.longitude) => {
     try {
-      const { data } = await this.request.get(`onecall?lat=${latitude}&lon=${longitude}&appid=${API_ID}&units=metric`)
+      const { data } = await this.request.get(`onecall?lat=${latitude}&lon=${longitude}&appid=${API_ID}&units=${units}&lang=${lang}`)
       this.daily = data.daily
     } catch (exception) {
     } finally {

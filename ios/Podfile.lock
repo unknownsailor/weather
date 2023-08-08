@@ -389,7 +389,11 @@ PODS:
     - React-jsi (= 0.72.3)
     - React-logger (= 0.72.3)
     - React-perflogger (= 0.72.3)
+  - RNCAsyncStorage (1.19.1):
+    - React-Core
   - RNPermissions (3.8.4):
+    - React-Core
+  - RNSVG (13.11.0):
     - React-Core
   - SocketRocket (0.6.1)
   - Yoga (1.14.0)
@@ -434,7 +438,9 @@ DEPENDENCIES:
   - React-runtimescheduler (from `../node_modules/react-native/ReactCommon/react/renderer/runtimescheduler`)
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - RNPermissions (from `../node_modules/react-native-permissions`)
+  - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -519,8 +525,12 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/react/utils"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNCAsyncStorage:
+    :path: "../node_modules/@react-native-async-storage/async-storage"
   RNPermissions:
     :path: "../node_modules/react-native-permissions"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -564,7 +574,9 @@ SPEC CHECKSUMS:
   React-runtimescheduler: dc1aaa41ddacb5c5dd7ef937f7597aceeb6da9f5
   React-utils: 64e65806703c9a720d390999b4237efa6ee107dc
   ReactCommon: 034a081499389f5337307265524892ef0b752fdf
+  RNCAsyncStorage: f47fe18526970a69c34b548883e1aeceb115e3e1
   RNPermissions: 053329a3413dafcd6c77d64ab0e23363c8269188
+  RNSVG: 03e4d258ca355d7836a0a5dd4d4dc63c1eb49cbb
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: 8796b55dba14d7004f980b54bcc9833ee45b28ce
 
