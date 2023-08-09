@@ -66,9 +66,9 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>AzeretMono-Black.ttf</string>
-		<string>AzeretMono-Bold.ttf</string>
-		<string>AzeretMono-Regular.ttf</string>
+		<string>Exo2-Light.ttf</string>
+		<string>Exo2-SemiBold.ttf</string>
+		<string>Exo2-Thin.ttf</string>
 	</array>
 </dict>
 </plist>

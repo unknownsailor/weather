@@ -5,43 +5,44 @@
  * @format
  */
 
-import { Appearance, SafeAreaView, StatusBar, View, useColorScheme } from 'react-native'
+import { SafeAreaView, StatusBar, StyleSheet, useColorScheme } from 'react-native'
 
-import { Colors } from 'react-native/Libraries/NewAppScreen'
+import LinearGradient from 'react-native-linear-gradient'
 import ErrorBoundary from './ErrorBoundary'
+import { color } from './constants/colors'
 import { UnitsProvider } from './providers/UnitsProvider'
 import { Screen } from './screens/Screen'
-import { color } from './constants/colors'
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark'
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  }
-
-  console.log('theme', useColorScheme());
-  console.log('Appearance', Appearance.getColorScheme());
-  console.log({ isDarkMode });
-  
-  
-
   return (
     <ErrorBoundary>
       <UnitsProvider>
-        <View style={{ flex: 1 }}>
+        <LinearGradient 
+          style={styles.container}
+          colors={isDarkMode ? color.purpleGradient : color.orangeGradient}
+          useAngle={true}
+          angle={135}
+        >
           <SafeAreaView style={{ flex: 1 }}>
             <StatusBar
               translucent
-              barStyle='default'
+              barStyle='light-content'
               backgroundColor='transparent'
             />
             <Screen />
           </SafeAreaView>
-        </View>
+        </LinearGradient>
       </UnitsProvider>
     </ErrorBoundary>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  }
+})
 
 export default App

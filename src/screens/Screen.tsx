@@ -1,10 +1,9 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
-import { AppState, Text, View } from 'react-native'
-import { WeatherService } from '../services/WeatherService'
-import { WeatherScreen } from './WeatherScreen'
-import { PERMISSION_TYPE, Permission } from '../shared/Permission'
+import { useEffect, useRef, useState } from 'react'
+import { AppState, Text } from 'react-native'
 import { PermissionStatus, RESULTS } from 'react-native-permissions'
 import { OpenSetting } from '../components/Weather/OpenSetting'
+import { PERMISSION_TYPE, Permission } from '../shared/Permission'
+import { WeatherScreen } from './WeatherScreen'
 
 export const Screen = () => {
   const [hasPermission, setHasPermission] = useState<boolean>(true)

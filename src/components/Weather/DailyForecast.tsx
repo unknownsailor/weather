@@ -1,11 +1,10 @@
-import React, { useCallback } from 'react'
-import { IDaily } from '../../interfaces/IDaily'
+import { useCallback } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
-import { WeatherIcon } from './WeatherIcon'
+import { IDaily } from '../../interfaces/IDaily'
 import { getDate, getIcon, getTemp } from '../../utils'
-import { Temp } from './Temp'
 import { Date } from './Date'
-import { font } from '../../constants/fonts'
+import { Temp } from './Temp'
+import { WeatherIcon } from './WeatherIcon'
 
 interface IDailyForecastProp {
   daily: Array<IDaily>
@@ -21,9 +20,9 @@ export const DailyForecast = (props: IDailyForecastProp) => {
     return (
       <View style={styles.plate}>
         <Date date={getDate(item.dt)} />
-        <WeatherIcon icon={getIcon(item.weather[0].icon)} styles={{ width: 80, height: 80 }} />
+        <WeatherIcon icon={getIcon(item.weather[0].icon)} />
         <Temp temp={getTemp(item.temp.day)} />
-        <Temp temp={getTemp(item.temp.night)} />
+        <Temp temp={getTemp(item.temp.night)} styles={styles.minTemp} />
       </View>
     )
   }
@@ -48,5 +47,9 @@ const styles = StyleSheet.create({
   plate: {
     width: 90,
     marginRight: 8,
+    alignItems: 'center',
+  },
+  minTemp: {
+    opacity: .8
   }
 })

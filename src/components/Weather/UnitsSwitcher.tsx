@@ -1,7 +1,6 @@
-import React from 'react';
+import { Platform, Pressable, StyleSheet, View } from 'react-native';
+import { color } from '../../constants/colors';
 import { Units } from '../../enums/Units';
-import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
-import { font } from '../../constants/fonts';
 import { Icon, IconName } from '../../shared/Icon';
 
 interface IUnitsSwitcherProps {
@@ -14,7 +13,7 @@ export const UnitsSwitcher = (props: IUnitsSwitcherProps) => {
 
   const button = [
     { icon: IconName.Celsius, value: Units.METRIC },
-    { icon: IconName.Celsius, value: Units.IMPERIAL },
+    { icon: IconName.Fahrenheit, value: Units.IMPERIAL },
   ]
 
   return (
@@ -23,7 +22,7 @@ export const UnitsSwitcher = (props: IUnitsSwitcherProps) => {
         button.map(button => {
           return (
             <Pressable key={button.value} style={[styles.block, button.value === Units.METRIC && { marginRight: 8 }]} disabled={button.value === units} onPress={() => onUnits(button.value)}>
-              <Icon name={button.icon} size={18} color={button.value === units ? '#000' : 'gray'} />
+              <Icon name={button.icon} size={36} color={button.value === units ? color.white : color.gray200} />
             </Pressable>
           )
         })
@@ -37,17 +36,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    zIndex: 999999,
     marginTop: Platform.OS === 'android' ? 32 : 0,
     paddingHorizontal: 16,
   },
   block: {
-    paddingHorizontal: 8,
-    paddingVertical: 16,
+    padding: 4,
   },
-  text: {
-    fontFamily: font.AZERET_MONO_REGULAR,
-    fontSize: 16,
-    lineHeight: 18,
-  }
 })

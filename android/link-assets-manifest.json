@@ -2,16 +2,16 @@
   "migIndex": 1,
   "data": [
     {
-      "path": "assets/fonts/AzeretMono-Black.ttf",
-      "sha1": "6fded021583f1e822b7107234d1465a3711ac5ed"
+      "path": "assets/fonts/Exo2-Light.ttf",
+      "sha1": "f4bb7127516cf707f47a47bb377000d0cbeb1d5c"
     },
     {
-      "path": "assets/fonts/AzeretMono-Bold.ttf",
-      "sha1": "a0d47760d9c444142201677cad79a460aaeb2f40"
+      "path": "assets/fonts/Exo2-SemiBold.ttf",
+      "sha1": "fceac098295ae23f2bd219e566b1e3f1db825a7c"
     },
     {
-      "path": "assets/fonts/AzeretMono-Regular.ttf",
-      "sha1": "774ec8898b73224b910ceba1e9ed7fa4091de33c"
+      "path": "assets/fonts/Exo2-Thin.ttf",
+      "sha1": "296e761a0212c35f359032960828ef0ff3a2e997"
     }
   ]
 }
