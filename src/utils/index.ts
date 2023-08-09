@@ -1,8 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { format } from 'date-fns';
+import { format } from "date-fns";
 import { isObject } from 'lodash';
 import { NativeModules, Platform } from 'react-native';
 import { IconName } from '../shared/Icon';
+import { cs, uk } from 'date-fns/locale';
 
 export const deviceLocale = () => {
   if (Platform.OS === 'ios') {
@@ -15,7 +16,8 @@ export const deviceLocale = () => {
 
 }
 
-export const getDate = (date: number) => format(new Date(date * 1000), 'eeeee')
+export const getDate = (date: number) => format(new Date(date * 1000), 'ccccc')
+// export const getDate = (date: number) => format(new Date(date * 1000), 'ccccc', {locale: cs})
 
 export const getTemp = (temp: number) => Math.round(temp).toString()
 
@@ -31,9 +33,10 @@ export const getIcon = (icon: string) => {
       return IconName.CloudMoon
     case '03n':
     case '03d':
+      return IconName.Cloud
     case '04d':
     case '04n':
-      return IconName.Cloud
+      return IconName.Clouds
     case '09d':
     case '09n':
       return IconName.CloudShowersHeavy

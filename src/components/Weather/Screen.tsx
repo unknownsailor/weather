@@ -11,6 +11,7 @@ import { deviceLocale, getIcon, getTemp } from '../../utils'
 import { IUnitsContext, UnitsContext } from '../../providers/UnitsProvider'
 import { Units } from '../../enums/Units'
 import { UnitsSwitcher } from './UnitsSwitcher'
+import { font } from '../../constants/fonts'
 
 interface IScreenProps {
   weather: WeatherService
@@ -20,7 +21,9 @@ export const Screen = observer((props: IScreenProps) => {
   const unitsContext = useContext(UnitsContext) as IUnitsContext
 
   useEffect(() => {
-    const lang = deviceLocale().split('-')[0]
+    const lang = deviceLocale().split('_')[0]
+    console.log({ lang });
+    
     props.weather.getLocation(unitsContext.units, lang)
   }, [unitsContext.units])
 
@@ -34,7 +37,7 @@ export const Screen = observer((props: IScreenProps) => {
       <CityName name={props.weather.current.name} />
       <View style={styles.block}>
         <WeatherIcon icon={getIcon(props.weather.current.weather[0].icon)} />
-        <Temp temp={getTemp(props.weather.current.main.temp)} />
+        <Temp temp={getTemp(props.weather.current.main.temp)} styles={styles.temp} />
       </View>
       <DailyForecast daily={props.weather.daily} />
     </ScrollView>
@@ -43,12 +46,16 @@ export const Screen = observer((props: IScreenProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    position: 'relative',
     flexGrow: 1,
   },
   block: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  temp: {
+    fontFamily: font.AZERET_MONO_BLACK,
+    fontSize: 48,
+    lineHeight: 54,
   }
 })

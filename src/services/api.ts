@@ -11,11 +11,11 @@ export const api = axios.create({
 
 api.interceptors.response.use(
   response => {
-    console.log('response', toJS(response))
+    // console.log('response', toJS(response))
     return response
   },
   error => {
-    console.log('error', toJS(error))
+    // console.log('error', toJS(error))
     return Promise.reject(error)
   }
 )
