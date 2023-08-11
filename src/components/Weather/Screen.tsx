@@ -1,10 +1,10 @@
 import { observer } from 'mobx-react'
 import { useContext, useEffect } from 'react'
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { font } from '../../constants/fonts'
 import { IUnitsContext, UnitsContext } from '../../providers/UnitsProvider'
 import { WeatherService } from '../../services/WeatherService'
-import { deviceLocale, getIcon, getTemp } from '../../utils'
+import { getIcon, getTemp } from '../../utils'
 import { CityName } from './CityName'
 import { DailyForecast } from './DailyForecast'
 import { Temp } from './Temp'
@@ -18,17 +18,21 @@ interface IScreenProps {
 export const Screen = observer((props: IScreenProps) => {
   const unitsContext = useContext(UnitsContext) as IUnitsContext
 
+  const onRefresh = () => props.weather.onRefresh(unitsContext.units)
+
   useEffect(() => {
-    const lang = deviceLocale().split('_')[0]
-    props.weather.getLocation(unitsContext.units, lang)
+    props.weather.getLocation(unitsContext.units)
   }, [unitsContext.units])
 
-  if(props.weather.loading.current) {
+  if (props.weather.loading.current) {
     return <Text>Loading</Text>
   }
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView
+      contentContainerStyle={styles.container}
+      refreshControl={<RefreshControl refreshing={false} onRefresh={onRefresh} />}
+    >
       <UnitsSwitcher units={unitsContext.units} onUnits={unitsContext.changeUnits} />
       <CityName name={props.weather.current.name} />
       <View style={styles.block}>
@@ -53,5 +57,5 @@ const styles = StyleSheet.create({
     fontFamily: font.EXO2_SEMIBOLD,
     fontSize: 48,
     lineHeight: 54,
-  }
+  },
 })

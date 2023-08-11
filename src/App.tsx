@@ -21,9 +21,9 @@ function App(): JSX.Element {
       <UnitsProvider>
         <LinearGradient
           style={styles.container}
-          colors={isDarkMode ? color.purpleGradient : color.orangeGradient}
+          colors={isDarkMode ? color.purpleGradient : color.blueGradient}
           useAngle={true}
-          angle={135}
+          angle={isDarkMode ? 225 : 45}
         >
           <SafeAreaView style={{ flex: 1 }}>
             <StatusBar translucent barStyle="light-content" backgroundColor="transparent" />

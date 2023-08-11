@@ -27,7 +27,7 @@ export class WeatherService {
     this.request = api
   }
 
-  getLocation = async (value: Units, lang: string) => {    
+  getLocation = async (value: Units) => {
     this.loading.location = true
     await Geolocation.getCurrentPosition(
       async position => {
@@ -37,8 +37,8 @@ export class WeatherService {
         this.latitude = latitude
         this.longitude = longitude
         this.loading.location = false
-        this.currentForecast(value, lang)
-        this.dailyForecast(value, lang)
+        this.currentForecast(value)
+        this.dailyForecast(value)
       },
       error => {
         console.log(error.code, error.message)
@@ -47,11 +47,11 @@ export class WeatherService {
     )
   }
 
-  currentForecast = async (units: Units, lang: string, latitude = this.latitude, longitude = this.longitude) => {
-    console.log(latitude, longitude)
-
+  currentForecast = async (units: Units, latitude = this.latitude, longitude = this.longitude) => {
     try {
-      const { data } = await this.request.get(`weather?lat=${latitude}&lon=${longitude}&appid=${API_ID}&units=${units}&lang=${lang}`)
+      const { data } = await this.request.get(
+        `weather?lat=${latitude}&lon=${longitude}&appid=${API_ID}&units=${units}&lang=en`
+      )
       this.current = data
     } catch (exception) {
     } finally {
@@ -59,9 +59,11 @@ export class WeatherService {
     }
   }
 
-  dailyForecast = async (units: Units, lang: string, latitude = this.latitude, longitude = this.longitude) => {
+  dailyForecast = async (units: Units, latitude = this.latitude, longitude = this.longitude) => {
     try {
-      const { data } = await this.request.get(`onecall?lat=${latitude}&lon=${longitude}&appid=${API_ID}&units=${units}&lang=${lang}`)
+      const { data } = await this.request.get(
+        `onecall?lat=${latitude}&lon=${longitude}&appid=${API_ID}&units=${units}&lang=en`
+      )
       this.daily = data.daily
     } catch (exception) {
     } finally {
@@ -69,4 +71,8 @@ export class WeatherService {
     }
   }
 
+  onRefresh = (units: Units) => {
+    this.currentForecast(units)
+    this.dailyForecast(units)
+  }
 }
