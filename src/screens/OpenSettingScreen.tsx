@@ -5,7 +5,7 @@ interface IOpenSettingProps {
   openSetting: () => void
 }
 
-export const OpenSetting = (props: IOpenSettingProps) => {
+export const OpenSettingScreen = (props: IOpenSettingProps) => {
   return (
     <View style={styles.container}>
       <Text>You don't allowed location permission</Text>

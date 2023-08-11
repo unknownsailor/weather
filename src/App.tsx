@@ -12,6 +12,8 @@ import ErrorBoundary from './ErrorBoundary'
 import { color } from './constants/colors'
 import { UnitsProvider } from './providers/UnitsProvider'
 import { Screen } from './screens/Screen'
+import { useEffect } from 'react'
+import * as BootSplash from 'react-native-bootsplash'
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark'
@@ -26,7 +28,7 @@ function App(): JSX.Element {
           angle={isDarkMode ? 225 : 45}
         >
           <SafeAreaView style={{ flex: 1 }}>
-            <StatusBar translucent barStyle="light-content" backgroundColor="transparent" />
+            <StatusBar translucent backgroundColor="transparent" />
             <Screen />
           </SafeAreaView>
         </LinearGradient>

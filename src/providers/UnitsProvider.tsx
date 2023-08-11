@@ -9,7 +9,7 @@ export interface IUnitsContext {
 
 export const UnitsContext = createContext({
   units: Units.METRIC,
-  changeUnits: (value: Units) => {}
+  changeUnits: (value: Units) => {},
 })
 
 interface IUnitsProvider {
@@ -25,10 +25,10 @@ export const UnitsProvider = (props: IUnitsProvider) => {
   }
 
   useEffect(() => {
-    (async () => {
+    ;(async () => {
       const _units = await getFromAsyncStorage('units')
-      console.log({ _units });
-      if(typeof _units === 'undefined') {
+      console.log({ _units })
+      if (typeof _units === 'undefined') {
         setToAsyncStorage('units', units)
       } else {
         setUnits(_units)

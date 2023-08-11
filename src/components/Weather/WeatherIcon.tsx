@@ -7,6 +7,5 @@ interface IWeatherIconProps {
 }
 
 export const WeatherIcon = (props: IWeatherIconProps) => {
-  
   return <Icon name={props.icon} color={color.gray50} size={props.size} />
 }

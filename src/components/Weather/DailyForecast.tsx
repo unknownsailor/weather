@@ -15,8 +15,7 @@ export const DailyForecast = (props: IDailyForecastProp) => {
 
   const keyExtractor = useCallback((item: IDaily) => item.dt.toString(), [])
 
-  const renderItem = ({ item } : { item: IDaily }) => {
-    
+  const renderItem = ({ item }: { item: IDaily }) => {
     return (
       <View style={styles.plate}>
         <Date date={getDate(item.dt)} />
@@ -29,7 +28,7 @@ export const DailyForecast = (props: IDailyForecastProp) => {
 
   return (
     <View style={styles.container}>
-      <FlatList 
+      <FlatList
         horizontal
         showsHorizontalScrollIndicator={false}
         keyExtractor={keyExtractor}
@@ -50,6 +49,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   minTemp: {
-    opacity: .8
-  }
+    opacity: 0.8,
+  },
 })

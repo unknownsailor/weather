@@ -1,19 +1,18 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { format } from "date-fns";
-import { isObject } from 'lodash';
-import { NativeModules, Platform } from 'react-native';
-import { IconName } from '../shared/Icon';
-import { cs, uk } from 'date-fns/locale';
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { format } from 'date-fns'
+import { isObject } from 'lodash'
+import { NativeModules, Platform } from 'react-native'
+import { IconName } from '../shared/Icon'
+import { cs, uk } from 'date-fns/locale'
 
 export const deviceLocale = () => {
   if (Platform.OS === 'ios') {
     return (
       NativeModules.SettingsManager.settings.AppleLocale || NativeModules.SettingsManager.settings.AppleLanguages[0]
-    ); // iOS 13
+    ) // iOS 13
   }
 
-  return NativeModules.I18nManager.localeIdentifier;
-
+  return NativeModules.I18nManager.localeIdentifier
 }
 
 export const getDate = (date: number) => format(new Date(date * 1000), 'ccccc')
@@ -22,7 +21,7 @@ export const getDate = (date: number) => format(new Date(date * 1000), 'ccccc')
 export const getTemp = (temp: number) => Math.round(temp).toString()
 
 export const getIcon = (icon: string) => {
-  switch(icon) {
+  switch (icon) {
     case '01d':
       return IconName.Sun
     case '01n':

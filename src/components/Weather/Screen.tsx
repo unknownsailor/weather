@@ -10,6 +10,7 @@ import { DailyForecast } from './DailyForecast'
 import { Temp } from './Temp'
 import { UnitsSwitcher } from './UnitsSwitcher'
 import { WeatherIcon } from './WeatherIcon'
+import * as BootSplash from 'react-native-bootsplash'
 
 interface IScreenProps {
   weather: WeatherService
@@ -25,7 +26,7 @@ export const Screen = observer((props: IScreenProps) => {
   }, [unitsContext.units])
 
   if (props.weather.loading.current) {
-    return <Text>Loading</Text>
+    return <Text>Loading Weather</Text>
   }
 
   return (

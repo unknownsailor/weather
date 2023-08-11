@@ -15,5 +15,5 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     color: color.gray50,
     textAlign: 'center',
-  }
+  },
 })

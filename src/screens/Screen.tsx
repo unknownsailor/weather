@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { AppState, Text } from 'react-native'
 import { PermissionStatus, RESULTS } from 'react-native-permissions'
-import { OpenSetting } from '../components/Weather/OpenSetting'
+import { OpenSettingScreen } from './OpenSettingScreen'
 import { PERMISSION_TYPE, Permission } from '../shared/Permission'
 import { WeatherScreen } from './WeatherScreen'
+import * as BootSplash from 'react-native-bootsplash'
 
 export const Screen = () => {
   const [hasPermission, setHasPermission] = useState<boolean>(true)
@@ -25,6 +26,7 @@ export const Screen = () => {
   }
 
   useEffect(() => {
+    void BootSplash.hide({ fade: true })
     checkPermission()
 
     const subscription = AppState.addEventListener('change', nextAppState => {
@@ -41,8 +43,8 @@ export const Screen = () => {
   }, [])
 
   if (permissionType === RESULTS.DENIED || permissionType === null) {
-    return <Text>Loading</Text>
+    return <></>
   }
 
-  return hasPermission ? <WeatherScreen /> : <OpenSetting openSetting={Permission.openSettings} />
+  return hasPermission ? <WeatherScreen /> : <OpenSettingScreen openSetting={Permission.openSettings} />
 }

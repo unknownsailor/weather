@@ -1,6 +1,6 @@
-import { StyleSheet, Text } from 'react-native';
-import { color } from '../../constants/colors';
-import { font } from '../../constants/fonts';
+import { StyleSheet, Text } from 'react-native'
+import { color } from '../../constants/colors'
+import { font } from '../../constants/fonts'
 
 interface ICityNameProps {
   name: string
@@ -18,5 +18,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textTransform: 'uppercase',
     marginVertical: 16,
-  }
+  },
 })

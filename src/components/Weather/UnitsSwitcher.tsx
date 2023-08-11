@@ -1,10 +1,10 @@
-import { Platform, Pressable, StyleSheet, View } from 'react-native';
-import { color } from '../../constants/colors';
-import { Units } from '../../enums/Units';
-import { Icon, IconName } from '../../shared/Icon';
+import { Platform, Pressable, StyleSheet, View } from 'react-native'
+import { color } from '../../constants/colors'
+import { Units } from '../../enums/Units'
+import { Icon, IconName } from '../../shared/Icon'
 
 interface IUnitsSwitcherProps {
-  units: Units,
+  units: Units
   onUnits: (value: Units) => void
 }
 
@@ -18,15 +18,18 @@ export const UnitsSwitcher = (props: IUnitsSwitcherProps) => {
 
   return (
     <View style={styles.container}>
-      {
-        button.map(button => {
-          return (
-            <Pressable key={button.value} style={[styles.block, button.value === Units.METRIC && { marginRight: 8 }]} disabled={button.value === units} onPress={() => onUnits(button.value)}>
-              <Icon name={button.icon} size={36} color={button.value === units ? color.white : color.gray200} />
-            </Pressable>
-          )
-        })
-      }
+      {button.map(button => {
+        return (
+          <Pressable
+            key={button.value}
+            style={[styles.block, button.value === Units.METRIC && { marginRight: 8 }]}
+            disabled={button.value === units}
+            onPress={() => onUnits(button.value)}
+          >
+            <Icon name={button.icon} size={36} color={button.value === units ? color.white : color.gray200} />
+          </Pressable>
+        )
+      })}
     </View>
   )
 }
