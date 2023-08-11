@@ -19,18 +19,14 @@ function App(): JSX.Element {
   return (
     <ErrorBoundary>
       <UnitsProvider>
-        <LinearGradient 
+        <LinearGradient
           style={styles.container}
           colors={isDarkMode ? color.purpleGradient : color.orangeGradient}
           useAngle={true}
           angle={135}
         >
           <SafeAreaView style={{ flex: 1 }}>
-            <StatusBar
-              translucent
-              barStyle='light-content'
-              backgroundColor='transparent'
-            />
+            <StatusBar translucent barStyle="light-content" backgroundColor="transparent" />
             <Screen />
           </SafeAreaView>
         </LinearGradient>
@@ -42,7 +38,7 @@ function App(): JSX.Element {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  }
+  },
 })
 
 export default App
