@@ -7,7 +7,7 @@ export const WeatherScreen = () => {
   const weather = useMemo(() => new WeatherService(), [])
 
   if (!weather) {
-    return <Text>Loading</Text>
+    return <Text>Loading!</Text>
   }
 
   return <Screen weather={weather} />
